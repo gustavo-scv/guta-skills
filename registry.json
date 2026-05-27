@@ -1,0 +1,58 @@
+{
+  "$schema": "./schemas/registry.schema.json",
+  "schemaVersion": 1,
+  "id": "guta-skills",
+  "name": "Guta Skills",
+  "description": "Personal, agent-agnostic registry of reusable AI agent skills.",
+  "skillRoot": "skills",
+  "entrypoint": "SKILL.md",
+  "skills": [
+    {
+      "id": "agentic-board-cli",
+      "name": "agentic-board-cli",
+      "title": "Agentic Board CLI",
+      "description": "Use when user needs to inspect, update, diagram, template, export, or visually verify a local tldraw Agentic Board through the standalone agentic-board CLI and browser bridge.",
+      "path": "skills/agentic-board-cli",
+      "manifest": "skills/agentic-board-cli/skill.json",
+      "entrypoint": "skills/agentic-board-cli/SKILL.md",
+      "tags": [
+        "agentic-board",
+        "tldraw",
+        "cli",
+        "visual-verification"
+      ],
+      "agents": [
+        "claude-code",
+        "cursor",
+        "codex",
+        "pi",
+        "antigravity",
+        "generic"
+      ]
+    },
+    {
+      "id": "playwright-cli",
+      "name": "playwright-cli",
+      "title": "Playwright CLI",
+      "description": "Drive a real browser from the shell to navigate, click, fill, snapshot, screenshot, mock network, or run/debug Playwright tests.",
+      "path": "skills/playwright-cli",
+      "manifest": "skills/playwright-cli/skill.json",
+      "entrypoint": "skills/playwright-cli/SKILL.md",
+      "tags": [
+        "playwright",
+        "browser-automation",
+        "e2e",
+        "testing",
+        "scraping"
+      ],
+      "agents": [
+        "claude-code",
+        "cursor",
+        "codex",
+        "pi",
+        "antigravity",
+        "generic"
+      ]
+    }
+  ]
+}

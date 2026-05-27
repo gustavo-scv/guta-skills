@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "schemaVersion": 1,
+  "id": "agentic-board-cli",
+  "name": "agentic-board-cli",
+  "description": "Use when user needs to inspect, update, diagram, template, export, or visually verify a local tldraw Agentic Board through the standalone agentic-board CLI and browser bridge.",
+  "entrypoint": "SKILL.md",
+  "files": [
+    "SKILL.md"
+  ],
+  "tags": [
+    "agentic-board",
+    "tldraw",
+    "cli",
+    "visual-verification"
+  ],
+  "agents": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "pi",
+    "antigravity",
+    "generic"
+  ],
+  "install": {
+    "copyDirectory": true,
+    "preserveRelativePaths": true,
+    "notes": "Copy the whole skill directory into the target agent's personal skills directory."
+  }
+}

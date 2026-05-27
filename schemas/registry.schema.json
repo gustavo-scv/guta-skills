@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/agent-skill-registry.schema.json",
+  "title": "Agent Skill Registry",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "description",
+    "skillRoot",
+    "entrypoint",
+    "skills"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "skillRoot": {
+      "type": "string",
+      "const": "skills"
+    },
+    "entrypoint": {
+      "type": "string",
+      "const": "SKILL.md"
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "title",
+          "description",
+          "path",
+          "manifest",
+          "entrypoint",
+          "tags",
+          "agents"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]*$"
+          },
+          "name": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]*$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "path": {
+            "type": "string",
+            "pattern": "^skills/[a-z0-9][a-z0-9-]*$"
+          },
+          "manifest": {
+            "type": "string",
+            "pattern": "^skills/[a-z0-9][a-z0-9-]*/skill\\.json$"
+          },
+          "entrypoint": {
+            "type": "string",
+            "pattern": "^skills/[a-z0-9][a-z0-9-]*/SKILL\\.md$"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "agents": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

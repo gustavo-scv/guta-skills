@@ -1,0 +1,41 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "schemaVersion": 1,
+  "id": "playwright-cli",
+  "name": "playwright-cli",
+  "description": "Drive a real browser from the shell to navigate, click, fill, snapshot, screenshot, mock network, or run/debug Playwright tests.",
+  "entrypoint": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "references/element-attributes.md",
+    "references/playwright-tests.md",
+    "references/request-mocking.md",
+    "references/running-code.md",
+    "references/session-management.md",
+    "references/spec-driven-testing.md",
+    "references/storage-state.md",
+    "references/test-generation.md",
+    "references/tracing.md",
+    "references/video-recording.md"
+  ],
+  "tags": [
+    "playwright",
+    "browser-automation",
+    "e2e",
+    "testing",
+    "scraping"
+  ],
+  "agents": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "pi",
+    "antigravity",
+    "generic"
+  ],
+  "install": {
+    "copyDirectory": true,
+    "preserveRelativePaths": true,
+    "notes": "Copy the whole skill directory so referenced files remain available beside SKILL.md."
+  }
+}
