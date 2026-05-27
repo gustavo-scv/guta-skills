@@ -4,6 +4,22 @@ Personal, agent-agnostic repository for reusable AI agent skills.
 
 This repo is organized like a small skills marketplace: every skill is a self-contained directory under `skills/`, and `registry.json` indexes the available packages so Claude Code, Cursor, Codex, Pi, Antigravity, or any other agent can pull one skill without cloning unrelated instructions.
 
+## Quick Summary
+
+Use this repo as a central source for personal agent skills. Each skill can be installed independently by copying its directory into the target agent's skills folder, or by reading `registry.json` and fetching the selected `skills[].path`.
+
+The repository is intentionally portable:
+
+- Paths in manifests use forward slashes.
+- Skill packages keep their own references beside `SKILL.md`.
+- `SKILL.md` remains the canonical human-readable instruction file.
+- `skill.json` and `registry.json` provide machine-readable metadata for marketplace-style discovery.
+
+## Skills At A Glance
+
+- `agentic-board-cli`: Operate local tldraw Agentic Boards through the standalone `agentic-board` CLI. Includes PowerShell and Bash examples for Windows, macOS, Linux, and WSL.
+- `playwright-cli`: Drive a real browser from the shell for navigation, UI checks, screenshots, traces, videos, network mocking, scraping, and Playwright test debugging.
+
 ## Repository Contract
 
 ```text

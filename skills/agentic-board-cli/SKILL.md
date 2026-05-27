@@ -9,23 +9,30 @@ Use the standalone CLI path. Do not rely on the old plugin/MCP runtime for board
 
 ## Repos
 
-Prefer the installed `agentic-board` command. When repo paths are needed, read them from environment variables:
+Prefer the installed `agentic-board` command. Do not assume machine-specific checkout paths. When repo paths are needed, read them from environment variables:
 
 - App: `$env:AGENTIC_BOARD_APP_DIR`
 - CLI: `$env:AGENTIC_BOARD_CLI_DIR`
 - Integration tests: `$env:AGENTIC_BOARD_INTEGRATION_DIR`
+- Project output root: `$env:AGENTIC_BOARD_PROJECT_DIR`
 
-If `AGENTIC_BOARD_CLI_DIR` is unset, infer it from the current repo when working inside a CLI checkout. If `AGENTIC_BOARD_APP_DIR` is unset, ask the user to set it or pass `agentic-board dev --app-dir <path>`.
+If `AGENTIC_BOARD_CLI_DIR` is unset, infer it only when the current working directory is inside a CLI checkout. If `AGENTIC_BOARD_APP_DIR` is unset, do not guess; ask the user for the tldraw app checkout or pass `agentic-board dev --app-dir <path>`.
+
+Use shell-native environment syntax. PowerShell uses `$env:NAME = "value"`. Bash/zsh uses `export NAME="value"`.
 
 ## Startup
 
-## Project-Local Board Isolation
+### Project-Local Board Isolation
 
 Do not reuse a running default board for unrelated user projects. Each project should get its own local app URL and bridge port so agents do not write different project plans into the same board.
 
-Before starting the board from a project workspace, set a project-scoped port pair in the current shell. If the user already set `AGENTIC_BOARD_PORT` and `AGENTIC_BOARD_APP_URL`, keep those values.
+Before starting the board from a project workspace, confirm the app checkout and set a project-scoped port pair in the current shell. If the user already set `AGENTIC_BOARD_PORT` and `AGENTIC_BOARD_APP_URL`, keep those values.
 
 ```powershell
+if (-not $env:AGENTIC_BOARD_APP_DIR) {
+  throw "Set AGENTIC_BOARD_APP_DIR to the tldraw app checkout, or run agentic-board dev --app-dir <path>."
+}
+
 if (-not $env:AGENTIC_BOARD_PORT -or -not $env:AGENTIC_BOARD_APP_URL) {
   $sum = 0
   (Get-Location).Path.ToCharArray() | ForEach-Object { $sum += [int]$_ }
@@ -34,11 +41,36 @@ if (-not $env:AGENTIC_BOARD_PORT -or -not $env:AGENTIC_BOARD_APP_URL) {
   $env:AGENTIC_BOARD_PORT = "$bridgePort"
   $env:AGENTIC_BOARD_APP_URL = "http://127.0.0.1:$appPort/"
 }
+
+if (-not $env:AGENTIC_BOARD_PROJECT_DIR) {
+  $env:AGENTIC_BOARD_PROJECT_DIR = (Get-Location).Path
+}
+```
+
+Bash/zsh equivalent:
+
+```bash
+test -n "$AGENTIC_BOARD_APP_DIR" || {
+  echo "Set AGENTIC_BOARD_APP_DIR to the tldraw app checkout, or run agentic-board dev --app-dir <path>." >&2
+  exit 1
+}
+
+if [ -z "$AGENTIC_BOARD_PORT" ] || [ -z "$AGENTIC_BOARD_APP_URL" ]; then
+  sum=$(pwd | od -An -tu1 | awk '{ for (i = 1; i <= NF; i++) s += $i } END { print s + 0 }')
+  bridge_port=$((5200 + (sum % 300)))
+  app_port=$((5600 + (sum % 300)))
+  export AGENTIC_BOARD_PORT="$bridge_port"
+  export AGENTIC_BOARD_APP_URL="http://127.0.0.1:$app_port/"
+fi
+
+export AGENTIC_BOARD_PROJECT_DIR="${AGENTIC_BOARD_PROJECT_DIR:-$(pwd)}"
 ```
 
 Then start with `agentic-board dev`. It passes the matching `VITE_BOARD_BRIDGE_URL` into the app automatically. After startup, run `agentic-board status` and verify the reported `bridgeUrl` and `boardAppUrl` match the current project shell. If not, stop and correct the environment before mutating the board.
 
 Use the in-app `Stop` button or `agentic-board shutdown` when finished with a project board.
+
+### Start Commands
 
 Fast path:
 
@@ -46,12 +78,14 @@ Fast path:
 agentic-board dev
 ```
 
-This starts the app from `AGENTIC_BOARD_APP_DIR`, starts the bridge, and opens the configured app URL. Use `dev --no-open` when another browser is already attached.
+This starts the app from `AGENTIC_BOARD_APP_DIR`, starts the bridge, and opens the configured app URL. Use `agentic-board dev --app-dir <path>` when the app checkout is not in the environment. Use `dev --no-open` when another browser is already attached.
 
 Manual path:
 
 ```powershell
-npm --prefix $env:AGENTIC_BOARD_APP_DIR run dev -- --host 127.0.0.1
+$bridgeWs = "ws://127.0.0.1:$env:AGENTIC_BOARD_PORT/board-session"
+$env:VITE_BOARD_BRIDGE_URL = $bridgeWs
+npm --prefix $env:AGENTIC_BOARD_APP_DIR run dev -- --host 127.0.0.1 --port ([uri]$env:AGENTIC_BOARD_APP_URL).Port
 ```
 
 Start or reuse the bridge:
@@ -61,13 +95,13 @@ npm --prefix $env:AGENTIC_BOARD_CLI_DIR run build
 agentic-board serve
 ```
 
-Open the app:
+Open the app configured by `AGENTIC_BOARD_APP_URL`:
 
 ```powershell
 agentic-board open
 ```
 
-The app connects to `ws://127.0.0.1:5179/board-session`. The bridge also exposes `GET /capabilities` and `GET /session` as HTTP shortcuts for connected boards.
+The app connects to `ws://127.0.0.1:<AGENTIC_BOARD_PORT>/board-session`. The bridge also exposes `GET /capabilities`, `GET /session`, and `POST /shutdown` as HTTP shortcuts for connected boards.
 
 Check readiness:
 
@@ -84,8 +118,11 @@ Proceed only when `doctor.result.ok` is true and the capability list includes `r
 - Use `run_batch` for multi-step diagram creation so operations share one logical transaction.
 - Prefer stable `shapeKey` values for SDK shapes and stable `itemId` values for workflow cards.
 - Read current state before mutating when the task depends on existing board contents.
+- Verify `agentic-board status` points at this project before every mutation if multiple projects are active.
 - Keep long reasoning, logs, diffs, secrets, and raw stack traces out of board cards.
 - Use browser/app exports for visual output; do not edit `.tldr` files offline in this workflow.
+- Save board artifacts with `--out`; relative output paths are written under `AGENTIC_BOARD_PROJECT_DIR` when set, otherwise under the current working directory.
+- If an example file path depends on `AGENTIC_BOARD_CLI_DIR` and that variable is unset, use inline `--json` or create a temporary JSON file in the current project instead of guessing a CLI path.
 
 ## Common Commands
 
@@ -125,6 +162,19 @@ agentic-board render-template --json '{ "templateId": "linear-flowchart", "insta
 agentic-board render-scenario release-readiness --json '{ "replaceExisting": true }'
 agentic-board export-bounds --json '{ "bounds": { "x": 40, "y": 40, "w": 800, "h": 400 }, "format": "png" }'
 ```
+
+Save board artifacts:
+
+```powershell
+agentic-board save-snapshot --out .agentic-board/board-snapshot.json
+agentic-board save-selection --out .agentic-board/selection.json
+agentic-board export-page --out .agentic-board/page.png
+agentic-board export-shapes --json '{ "shapes": [{ "shapeKey": "demo:a" }], "format": "png" }' --out .agentic-board/demo-a.png
+agentic-board export-bounds --json '{ "bounds": { "x": 40, "y": 40, "w": 800, "h": 400 }, "format": "png" }' --out .agentic-board/region.png
+agentic-board capture-region --json '{ "source": "viewport", "format": "png" }' --out .agentic-board/viewport.png
+```
+
+Use the same `agentic-board ... --out path` commands in Bash/zsh. Keep paths relative unless the user explicitly wants an absolute path.
 
 Escape hatch:
 
@@ -181,6 +231,9 @@ Assets and media:
 Export, capture, and persistence:
 `export_shapes`, `export_page`, `export_bounds`, `save_snapshot`, `load_snapshot`, `serialize_selection`.
 
+Convenience save wrappers:
+`save-snapshot`, `save-selection`, `export-page`, `export-shapes`, `export-bounds --out`, `capture-region --out`.
+
 History and editor actions:
 `undo`, `redo`, `mark_history_stop`, `clear_selection`, `select_shapes`, `set_current_tool`, `run_editor_action`.
 
@@ -189,7 +242,7 @@ Templates and transactions:
 
 ## Visual Verification
 
-Use Playwright via the Playwright CLI (playwright-cli --help) for live board checks. Verify that:
+Use Playwright via the Playwright skill (/playwright or /skill:playwright) for live board checks. Verify that:
 
 - The app page title is `tldraw agent`.
 - The bridge reports `boardConnected: true`.
