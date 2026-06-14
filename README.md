@@ -17,7 +17,6 @@ The repository is intentionally portable:
 
 ## Skills At A Glance
 
-- `agentic-board-cli`: Operate local tldraw Agentic Boards through the standalone `agentic-board` CLI. Includes PowerShell and Bash examples for Windows, macOS, Linux, and WSL.
 - `playwright-cli`: Drive a real browser from the shell for navigation, UI checks, screenshots, traces, videos, network mocking, scraping, and Playwright test debugging.
 
 ## Repository Contract

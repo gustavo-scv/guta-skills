@@ -8,29 +8,6 @@
   "entrypoint": "SKILL.md",
   "skills": [
     {
-      "id": "agentic-board-cli",
-      "name": "agentic-board-cli",
-      "title": "Agentic Board CLI",
-      "description": "Use when user needs to inspect, update, diagram, template, export, or visually verify a local tldraw Agentic Board through the standalone agentic-board CLI and browser bridge.",
-      "path": "skills/agentic-board-cli",
-      "manifest": "skills/agentic-board-cli/skill.json",
-      "entrypoint": "skills/agentic-board-cli/SKILL.md",
-      "tags": [
-        "agentic-board",
-        "tldraw",
-        "cli",
-        "visual-verification"
-      ],
-      "agents": [
-        "claude-code",
-        "cursor",
-        "codex",
-        "pi",
-        "antigravity",
-        "generic"
-      ]
-    },
-    {
       "id": "playwright-cli",
       "name": "playwright-cli",
       "title": "Playwright CLI",

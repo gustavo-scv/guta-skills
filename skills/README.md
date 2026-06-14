@@ -13,5 +13,4 @@ Each child directory is an independently installable skill package.
 
 ## Current Skills
 
-- `agentic-board-cli`: Operate and visually verify local tldraw Agentic Boards through the standalone `agentic-board` CLI.
 - `playwright-cli`: Drive a real browser from the shell with Playwright for navigation, interaction, testing, screenshots, tracing, and network mocking.
