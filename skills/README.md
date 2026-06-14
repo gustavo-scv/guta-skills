@@ -13,4 +13,5 @@ Each child directory is an independently installable skill package.
 
 ## Current Skills
 
+- `remove-ai-signs`: Revise drafts to remove common AI-writing signs while preserving meaning, facts, citations, voice, and user intent.
 - `playwright-cli`: Drive a real browser from the shell with Playwright for navigation, interaction, testing, screenshots, tracing, and network mocking.

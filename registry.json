@@ -8,6 +8,30 @@
   "entrypoint": "SKILL.md",
   "skills": [
     {
+      "id": "remove-ai-signs",
+      "name": "remove-ai-signs",
+      "title": "Remove AI Signs",
+      "description": "Revise drafts to remove common AI-writing signs while preserving meaning, facts, citations, voice, and user intent.",
+      "path": "skills/remove-ai-signs",
+      "manifest": "skills/remove-ai-signs/skill.json",
+      "entrypoint": "skills/remove-ai-signs/SKILL.md",
+      "tags": [
+        "writing",
+        "editing",
+        "ai-writing",
+        "revision",
+        "style"
+      ],
+      "agents": [
+        "claude-code",
+        "cursor",
+        "codex",
+        "pi",
+        "antigravity",
+        "generic"
+      ]
+    },
+    {
       "id": "playwright-cli",
       "name": "playwright-cli",
       "title": "Playwright CLI",

@@ -1,0 +1,31 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "schemaVersion": 1,
+  "id": "remove-ai-signs",
+  "name": "remove-ai-signs",
+  "description": "Revise drafts to remove common AI-writing signs while preserving meaning, facts, citations, voice, and user intent.",
+  "entrypoint": "SKILL.md",
+  "files": [
+    "SKILL.md"
+  ],
+  "tags": [
+    "writing",
+    "editing",
+    "ai-writing",
+    "revision",
+    "style"
+  ],
+  "agents": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "pi",
+    "antigravity",
+    "generic"
+  ],
+  "install": {
+    "copyDirectory": true,
+    "preserveRelativePaths": true,
+    "notes": "Copy the whole skill directory into the target agent's personal skills directory."
+  }
+}

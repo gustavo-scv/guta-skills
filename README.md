@@ -17,6 +17,7 @@ The repository is intentionally portable:
 
 ## Skills At A Glance
 
+- `remove-ai-signs`: Revise drafts to remove common AI-writing signs while preserving meaning, facts, citations, voice, and user intent.
 - `playwright-cli`: Drive a real browser from the shell for navigation, UI checks, screenshots, traces, videos, network mocking, scraping, and Playwright test debugging.
 
 ## Repository Contract
