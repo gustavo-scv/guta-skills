@@ -2,6 +2,8 @@
 
 Each child directory is an independently installable skill package.
 
+Marketplace installs use the mirrored skill copies under `../plugins/guta-skills/skills/`.
+
 ## Package Rules
 
 - `SKILL.md` is required and is the canonical instruction file.

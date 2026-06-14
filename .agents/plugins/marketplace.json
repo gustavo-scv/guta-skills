@@ -1,0 +1,20 @@
+{
+  "name": "guta-skills",
+  "interface": {
+    "displayName": "Guta Skills"
+  },
+  "plugins": [
+    {
+      "name": "guta-skills",
+      "source": {
+        "source": "local",
+        "path": "./plugins/guta-skills"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

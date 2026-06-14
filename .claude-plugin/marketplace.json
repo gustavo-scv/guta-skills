@@ -1,0 +1,29 @@
+{
+  "name": "guta-skills",
+  "owner": {
+    "name": "Gustavo"
+  },
+  "description": "Personal marketplace for reusable Claude Code skills.",
+  "version": "1.0.0",
+  "plugins": [
+    {
+      "name": "guta-skills",
+      "displayName": "Guta Skills",
+      "source": "./plugins/guta-skills",
+      "description": "Reusable personal skills for browser automation and prose revision.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Gustavo"
+      },
+      "homepage": "https://github.com/gustavo-scv/guta-skills",
+      "repository": "https://github.com/gustavo-scv/guta-skills",
+      "keywords": [
+        "skills",
+        "browser-automation",
+        "writing",
+        "editing"
+      ],
+      "category": "productivity"
+    }
+  ]
+}

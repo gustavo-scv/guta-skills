@@ -1,0 +1,36 @@
+{
+  "name": "guta-skills",
+  "version": "1.0.0",
+  "description": "Reusable personal skills for browser automation and prose revision.",
+  "author": {
+    "name": "Gustavo",
+    "url": "https://github.com/gustavo-scv"
+  },
+  "homepage": "https://github.com/gustavo-scv/guta-skills",
+  "repository": "https://github.com/gustavo-scv/guta-skills",
+  "keywords": [
+    "skills",
+    "browser-automation",
+    "writing",
+    "editing"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Guta Skills",
+    "shortDescription": "Personal browser and writing skills",
+    "longDescription": "A marketplace-ready bundle of reusable skills for driving browsers with Playwright and revising prose to remove common AI-writing signs while preserving facts and intent.",
+    "developerName": "Gustavo",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write",
+      "Interactive"
+    ],
+    "websiteURL": "https://github.com/gustavo-scv/guta-skills",
+    "defaultPrompt": [
+      "Use Playwright to inspect this page.",
+      "Remove AI-writing signs from this draft."
+    ],
+    "brandColor": "#10A37F"
+  }
+}

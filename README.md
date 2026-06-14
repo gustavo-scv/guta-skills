@@ -2,7 +2,7 @@
 
 Personal, agent-agnostic repository for reusable AI agent skills.
 
-This repo is organized like a small skills marketplace: every skill is a self-contained directory under `skills/`, and `registry.json` indexes the available packages so Claude Code, Cursor, Codex, Pi, Antigravity, or any other agent can pull one skill without cloning unrelated instructions.
+This repo is organized like a small skills marketplace: every skill is a self-contained directory under `skills/`, `registry.json` indexes the available packages for agent-agnostic consumers, and `plugins/guta-skills/` packages the same skills as an installable Codex and Claude Code plugin.
 
 ## Quick Summary
 
@@ -13,7 +13,10 @@ The repository is intentionally portable:
 - Paths in manifests use forward slashes.
 - Skill packages keep their own references beside `SKILL.md`.
 - `SKILL.md` remains the canonical human-readable instruction file.
-- `skill.json` and `registry.json` provide machine-readable metadata for marketplace-style discovery.
+- `skill.json` and `registry.json` provide machine-readable metadata for agent-agnostic discovery.
+- `.agents/plugins/marketplace.json` exposes a Codex plugin marketplace.
+- `.claude-plugin/marketplace.json` exposes a Claude Code plugin marketplace.
+- `plugins/guta-skills/` is the self-contained plugin bundle used by both marketplaces.
 
 ## Skills At A Glance
 
@@ -25,6 +28,19 @@ The repository is intentionally portable:
 ```text
 .
 ├── registry.json                 # Machine-readable catalog of all skills
+├── .agents/plugins/
+│   └── marketplace.json          # Codex marketplace catalog
+├── .claude-plugin/
+│   └── marketplace.json          # Claude Code marketplace catalog
+├── plugins/
+│   └── guta-skills/
+│       ├── .codex-plugin/
+│       │   └── plugin.json       # Codex plugin manifest
+│       ├── .claude-plugin/
+│       │   └── plugin.json       # Claude Code plugin manifest
+│       ├── schemas/
+│       │   └── skill.schema.json  # Schema target for bundled skill manifests
+│       └── skills/               # Marketplace-installable skill copies
 ├── schemas/
 │   ├── registry.schema.json       # Registry JSON schema
 │   └── skill.schema.json          # Per-skill manifest JSON schema
@@ -35,7 +51,26 @@ The repository is intentionally portable:
         └── references/           # Optional files used by SKILL.md
 ```
 
-The skill directory is the install unit. Consumers should copy the whole directory so relative links from `SKILL.md` keep working.
+For direct skill installs, each skill directory is the install unit. Consumers should copy the whole directory so relative links from `SKILL.md` keep working. For marketplace installs, use the `guta-skills` plugin bundle.
+
+## Installing The Marketplace
+
+Codex can add this repo as a marketplace:
+
+```bash
+codex plugin marketplace add gustavo-scv/guta-skills
+```
+
+Then install the `guta-skills` plugin from the Guta Skills marketplace.
+
+Claude Code can add the same repo as a marketplace:
+
+```text
+/plugin marketplace add gustavo-scv/guta-skills
+/plugin install guta-skills@guta-skills
+```
+
+Plugin-installed skills are namespaced by platform. In Claude Code, invoke them as `/guta-skills:playwright-cli` or `/guta-skills:remove-ai-signs`.
 
 ## Installing One Skill
 
@@ -66,7 +101,7 @@ New-Item -ItemType Directory -Force "$HOME/.claude/skills/playwright-cli"
 Copy-Item -Recurse -Force "guta-skills/skills/playwright-cli/*" "$HOME/.claude/skills/playwright-cli/"
 ```
 
-For sparse checkouts or marketplace crawlers, read `registry.json`, select one `skills[].path`, then fetch that directory only.
+For sparse checkouts or agent-agnostic crawlers, read `registry.json`, select one `skills[].path`, then fetch that directory only.
 
 ## Adding A Skill
 
