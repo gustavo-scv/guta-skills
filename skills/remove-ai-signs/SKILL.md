@@ -69,7 +69,3 @@ When the user asks for both, return:
 1. Revised text
 2. Notes on removed AI-sign patterns
 3. Source or fact-check risks, if any
-
-## False-Positive Guardrails
-
-Do not treat these as problems by themselves: perfect grammar, formal tone, transition words, correct markup, ordinary citations, or a mix of casual and formal register. Revise only when a pattern weakens accuracy, specificity, neutrality, or readability.
