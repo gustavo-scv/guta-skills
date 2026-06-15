@@ -8,6 +8,30 @@
   "entrypoint": "SKILL.md",
   "skills": [
     {
+      "id": "repomix-cli",
+      "name": "repomix-cli",
+      "title": "Repomix CLI",
+      "description": "Pack a whole codebase (local folder or remote GitHub repo) into one AI-ready file with the repomix CLI, defaulting to XML for LLM consumption. Estimates tokens before ingesting and gates packs over ~200k tokens behind user confirmation.",
+      "path": "skills/repomix-cli",
+      "manifest": "skills/repomix-cli/skill.json",
+      "entrypoint": "skills/repomix-cli/SKILL.md",
+      "tags": [
+        "repomix",
+        "codebase-packing",
+        "llm-context",
+        "code-analysis",
+        "cli"
+      ],
+      "agents": [
+        "claude-code",
+        "cursor",
+        "codex",
+        "pi",
+        "antigravity",
+        "generic"
+      ]
+    },
+    {
       "id": "remove-ai-signs",
       "name": "remove-ai-signs",
       "title": "Remove AI Signs",

@@ -1,0 +1,34 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "schemaVersion": 1,
+  "id": "repomix-cli",
+  "name": "repomix-cli",
+  "description": "Pack a whole codebase (local folder or remote GitHub repo) into one AI-ready file with the repomix CLI, defaulting to XML for LLM consumption. Estimates tokens before ingesting and gates packs over ~200k tokens behind user confirmation.",
+  "entrypoint": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "references/cli-reference.md",
+    "references/config.md",
+    "references/workflows.md"
+  ],
+  "tags": [
+    "repomix",
+    "codebase-packing",
+    "llm-context",
+    "code-analysis",
+    "cli"
+  ],
+  "agents": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "pi",
+    "antigravity",
+    "generic"
+  ],
+  "install": {
+    "copyDirectory": true,
+    "preserveRelativePaths": true,
+    "notes": "Copy the whole skill directory so referenced files remain available beside SKILL.md."
+  }
+}
