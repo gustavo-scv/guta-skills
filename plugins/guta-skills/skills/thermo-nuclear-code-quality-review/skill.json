@@ -1,0 +1,31 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "schemaVersion": 1,
+  "id": "thermo-nuclear-code-quality-review",
+  "name": "thermo-nuclear-code-quality-review",
+  "description": "Perform an unusually strict code quality audit focused on maintainability, abstraction quality, structural simplification, spaghetti reduction, and codebase health. Use when reviewing branch changes for deep implementation quality, not just correctness.",
+  "entrypoint": "SKILL.md",
+  "files": [
+    "SKILL.md"
+  ],
+  "tags": [
+    "code-review",
+    "code-quality",
+    "maintainability",
+    "architecture",
+    "refactoring"
+  ],
+  "agents": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "pi",
+    "antigravity",
+    "generic"
+  ],
+  "install": {
+    "copyDirectory": true,
+    "preserveRelativePaths": true,
+    "notes": "Copy the whole skill directory into the target agent's personal skills directory."
+  }
+}

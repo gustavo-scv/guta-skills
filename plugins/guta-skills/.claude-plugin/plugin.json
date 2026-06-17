@@ -2,7 +2,7 @@
   "name": "guta-skills",
   "displayName": "Guta Skills",
   "version": "1.0.0",
-  "description": "Reusable personal skills for browser automation and prose revision.",
+  "description": "Reusable personal skills for browser automation, prose revision, code review, context packing, and skill maintenance.",
   "author": {
     "name": "Gustavo",
     "url": "https://github.com/gustavo-scv"
@@ -13,7 +13,10 @@
     "skills",
     "browser-automation",
     "writing",
-    "editing"
+    "editing",
+    "code-review",
+    "code-quality",
+    "skill-review"
   ],
   "skills": "./skills/"
 }

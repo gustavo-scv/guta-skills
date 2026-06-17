@@ -78,6 +78,78 @@
         "antigravity",
         "generic"
       ]
+    },
+    {
+      "id": "deslop",
+      "name": "deslop",
+      "title": "Deslop",
+      "description": "Remove AI-generated code slop from current branch changes while preserving behavior. Use when cleaning diffs, reviewing AI-authored edits, removing unnecessary comments, simplifying defensive code, or aligning changes with local style.",
+      "path": "skills/deslop",
+      "manifest": "skills/deslop/skill.json",
+      "entrypoint": "skills/deslop/SKILL.md",
+      "tags": [
+        "code-quality",
+        "cleanup",
+        "review",
+        "ai-code",
+        "diff"
+      ],
+      "agents": [
+        "claude-code",
+        "cursor",
+        "codex",
+        "pi",
+        "antigravity",
+        "generic"
+      ]
+    },
+    {
+      "id": "thermo-nuclear-code-quality-review",
+      "name": "thermo-nuclear-code-quality-review",
+      "title": "Thermo-Nuclear Code Quality Review",
+      "description": "Perform an unusually strict code quality audit focused on maintainability, abstraction quality, structural simplification, spaghetti reduction, and codebase health. Use when reviewing branch changes for deep implementation quality, not just correctness.",
+      "path": "skills/thermo-nuclear-code-quality-review",
+      "manifest": "skills/thermo-nuclear-code-quality-review/skill.json",
+      "entrypoint": "skills/thermo-nuclear-code-quality-review/SKILL.md",
+      "tags": [
+        "code-review",
+        "code-quality",
+        "maintainability",
+        "architecture",
+        "refactoring"
+      ],
+      "agents": [
+        "claude-code",
+        "cursor",
+        "codex",
+        "pi",
+        "antigravity",
+        "generic"
+      ]
+    },
+    {
+      "id": "skill-reviewer",
+      "name": "skill-reviewer",
+      "title": "Skill Reviewer",
+      "description": "Review agent skills for trigger quality, portability, metadata correctness, installability, and maintainability. Use after creating or editing SKILL.md files, skill manifests, or marketplace-ready skill packages.",
+      "path": "skills/skill-reviewer",
+      "manifest": "skills/skill-reviewer/skill.json",
+      "entrypoint": "skills/skill-reviewer/SKILL.md",
+      "tags": [
+        "skills",
+        "review",
+        "metadata",
+        "portability",
+        "marketplace"
+      ],
+      "agents": [
+        "claude-code",
+        "cursor",
+        "codex",
+        "pi",
+        "antigravity",
+        "generic"
+      ]
     }
   ]
 }

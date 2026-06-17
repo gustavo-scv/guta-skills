@@ -1,0 +1,31 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "schemaVersion": 1,
+  "id": "deslop",
+  "name": "deslop",
+  "description": "Remove AI-generated code slop from current branch changes while preserving behavior. Use when cleaning diffs, reviewing AI-authored edits, removing unnecessary comments, simplifying defensive code, or aligning changes with local style.",
+  "entrypoint": "SKILL.md",
+  "files": [
+    "SKILL.md"
+  ],
+  "tags": [
+    "code-quality",
+    "cleanup",
+    "review",
+    "ai-code",
+    "diff"
+  ],
+  "agents": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "pi",
+    "antigravity",
+    "generic"
+  ],
+  "install": {
+    "copyDirectory": true,
+    "preserveRelativePaths": true,
+    "notes": "Copy the whole skill directory into the target agent's personal skills directory."
+  }
+}

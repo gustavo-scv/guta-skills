@@ -20,8 +20,12 @@ The repository is intentionally portable:
 
 ## Skills At A Glance
 
+- `repomix-cli`: Pack local or remote repositories into AI-ready context files with token estimation and safety gates.
 - `remove-ai-signs`: Revise drafts to remove common AI-writing signs while preserving meaning, facts, citations, voice, and user intent.
 - `playwright-cli`: Drive a real browser from the shell for navigation, UI checks, screenshots, traces, videos, network mocking, scraping, and Playwright test debugging.
+- `deslop`: Remove AI-generated code slop from branch changes without changing behavior.
+- `thermo-nuclear-code-quality-review`: Run a strict maintainability and architecture audit focused on structural simplification.
+- `skill-reviewer`: Review skills for trigger quality, metadata correctness, portability, installability, and marketplace readiness.
 
 ## Repository Contract
 
@@ -70,7 +74,7 @@ Claude Code can add the same repo as a marketplace:
 /plugin install guta-skills@guta-skills
 ```
 
-Plugin-installed skills are namespaced by platform. In Claude Code, invoke them as `/guta-skills:playwright-cli` or `/guta-skills:remove-ai-signs`.
+Plugin-installed skills are namespaced by platform. In Claude Code, invoke them as `/guta-skills:playwright-cli`, `/guta-skills:deslop`, or any other bundled skill name.
 
 ## Installing One Skill
 

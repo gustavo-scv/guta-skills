@@ -15,5 +15,9 @@ Marketplace installs use the mirrored skill copies under `../plugins/guta-skills
 
 ## Current Skills
 
+- `repomix-cli`: Pack local or remote repositories into AI-ready context files with token estimation and safety gates.
 - `remove-ai-signs`: Revise drafts to remove common AI-writing signs while preserving meaning, facts, citations, voice, and user intent.
 - `playwright-cli`: Drive a real browser from the shell with Playwright for navigation, interaction, testing, screenshots, tracing, and network mocking.
+- `deslop`: Remove AI-generated code slop from branch changes without changing behavior.
+- `thermo-nuclear-code-quality-review`: Run a strict maintainability and architecture audit focused on structural simplification.
+- `skill-reviewer`: Review skills for trigger quality, metadata correctness, portability, installability, and marketplace readiness.

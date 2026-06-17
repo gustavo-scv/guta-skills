@@ -1,0 +1,31 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "schemaVersion": 1,
+  "id": "skill-reviewer",
+  "name": "skill-reviewer",
+  "description": "Review agent skills for trigger quality, portability, metadata correctness, installability, and maintainability. Use after creating or editing SKILL.md files, skill manifests, or marketplace-ready skill packages.",
+  "entrypoint": "SKILL.md",
+  "files": [
+    "SKILL.md"
+  ],
+  "tags": [
+    "skills",
+    "review",
+    "metadata",
+    "portability",
+    "marketplace"
+  ],
+  "agents": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "pi",
+    "antigravity",
+    "generic"
+  ],
+  "install": {
+    "copyDirectory": true,
+    "preserveRelativePaths": true,
+    "notes": "Copy the whole skill directory into the target agent's personal skills directory."
+  }
+}
